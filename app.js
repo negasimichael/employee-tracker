@@ -117,3 +117,47 @@ var viewAllDepartments = () =>{
   })
 }
 
+//case 4. Add Employee?
+var addEmployee = () => { 
+  inquirer.prompt([
+    {
+      name: "firstname",
+      type: "input",
+      message: "What is the employee's first name"
+    },
+    {
+      name: "last_name",
+      type: "input",
+      message: " What is the employee's last name?"
+    },
+    {
+      name: "role",
+      type: "list",
+      message: "What is their role? ",
+      choices: selectRole()
+    },
+    {
+      name: "choice",
+      type: "rawlist",
+      message: "What is their managers name?",
+      choices: selectManager()
+    }
+  ]).then(function (val) {
+    var roleId = selectRole().indexOf(val.role) + 1
+    var managerId = selectManager().indexOf(val.choice) + 1
+    var firstName = val.firstname;
+    var lastName = val.lastname
+    connection.query("INSERT INTO employeeT SET ?", 
+      {
+        first_name: firstName,
+        last_name: lastName,
+        manager_id: managerId,
+        role_id: roleId
+      }, function(err){
+        if (err) throw err;
+        console.table(val);
+        startPrompt();
+      })
+  })
+}
+

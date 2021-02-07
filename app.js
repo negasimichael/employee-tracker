@@ -184,7 +184,9 @@ var selectManager = () =>{
     }
   })
   return managersArr;
-}//case 5. Update employee
+}
+
+//case 5. Update employee
 const updateEmployeeRole = () => {
   var query1 = (
       "SELECT e.first_name, e.last_name, e.id," +
@@ -198,7 +200,7 @@ const updateEmployeeRole = () => {
       for (var i = 0; i < resN.length; i++) {
           employeeNaneArr.push(resN[i].full_Name);
       }
-console.log(employeeNaneArr)
+      // console.log(employeeNaneArr)
       inquirer.prompt(
           [
             {
@@ -249,5 +251,37 @@ console.log(employeeNaneArr)
 
   })
 }
+
+//case 6. add role
+var addRole = () => { 
+  connection.query("SELECT role.title AS Title, role.salary AS Salary FROM role", (err, res) => {
+    inquirer.prompt([
+      {
+        name: "Title",
+        type: "input",
+        message: "What is the roles Title?"
+      },
+      {
+        name: "Salary",
+        type: "input",
+        message: "What is the salary of this role?"
+      } 
+    ]).then( res => {
+        connection.query(
+          "INSERT INTO role SET ?",
+          {
+            title: res.Title,
+            salary: res.Salary,
+          },
+          err => {
+            if (err) throw err
+            console.table(res);
+            startPrompt();
+          }
+        )
+    });
+  });
+}
+
 
 

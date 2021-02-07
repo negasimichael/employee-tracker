@@ -160,4 +160,15 @@ var addEmployee = () => {
       })
   })
 }
+//case 4. choieces 1
+var roleArr = [];
+var selectRole = () =>{
+  connection.query("SELECT * FROM role", (err, res) =>{
+    if (err) throw err
+    for (var i = 0; i < res.length; i++) {
+      roleArr.push(res[i].title);
+    }
+  })
+  return roleArr;
+}
 

@@ -334,4 +334,39 @@ var fireEmployee = () => {
 }
 
 
+//case 9. employee budget
+var employeeBuget = () => {
+  inquirer.prompt(
+    {
+      name: "budget",
+      type: "confirm",
+      message: "Do you want to know employee budget? (y/n)"
+    }
+  ).then( yes => {
+    if (!yes.budget) return startPrompt();
+    ; 
+    console.log('\nCompany Employee and theier salary')
+    console.log('----------------------------------')
+    var query = "SELECT employeeT.id, employeeT.first_name, employeeT.last_name, role.salary FROM employeeT INNER JOIN  role on role.id = employeeT.role_id left join employeeT e on employeeT.manager_id = e.id;"
+    connection.query(query, (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      //get another connection
+      var salaryArr= [];
+      for (let index = 0; index < res.length; index++) {
+        const element = res[index].salary;
+        salaryArr.push(element);
+      }
+      var totalBuget = 0;
+      for(var i = 0; i < salaryArr.length; i++) {
+        totalBuget += parseInt(salaryArr[i]);
+      }
+      console.log('-------------------------------')
+      console.log("Employees Total Budget = " + totalBuget)
+      console.log('\n')
+      startPrompt();
+    })
+  })
+}
+
 

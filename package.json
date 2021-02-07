@@ -1,0 +1,25 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.",
+  "main": "app.js",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/negasimichael/employee-tracker.git"
+  },
+  "author": "Negasi Michael",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/negasimichael/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/negasimichael/employee-tracker#readme"
+}

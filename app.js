@@ -307,4 +307,31 @@ var addDepartment = () =>{
 }
 
 
+//case 8. deleting employee
+var fireEmployee = () => {
+  connection.query("SELECT * FROM employeeT", (err, resId) => {
+    var array = [];
+    for (let index = 0; index < resId.length; index++) {
+      const element = resId[index].first_name;
+      array.push(element)
+    }
+    //console.log(array)
+  inquirer.prompt(
+    {
+      name: "employeeName",
+      type: "list",
+      message: "Enter employee's id to be deleted?",
+      choices: array
+    }
+  ).then( answer => {
+    connection.query("DELETE FROM employeeT WHERE first_name= ?", answer.employeeName)
+    console.log("\n" + answer.employeeName + " is successfuly fired!\n")
+    
+    startPrompt();
+  })
+})
+
+}
+
+
 

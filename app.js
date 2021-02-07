@@ -172,3 +172,16 @@ var selectRole = () =>{
   return roleArr;
 }
 
+
+
+//case 4. choice 2
+var managersArr = [];
+var selectManager = () =>{
+  connection.query("SELECT first_name, last_name FROM employeeT WHERE manager_id IS NULL",(err, res) =>{
+    if (err) throw err
+    for (var i = 0; i < res.length; i++) {
+      managersArr.push(res[i].first_name);
+    }
+  })
+  return managersArr;
+}

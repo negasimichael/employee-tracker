@@ -83,4 +83,15 @@ var startPrompt = () =>{
     }
   })
 }
+//case 1. View All Employees?
+var viewAllEmployees = () =>{
+  var query = "SELECT employeeT.id, employeeT.first_name, employeeT.last_name, role.title, role.salary, department.name AS Department, CONCAT(e.first_name, ' ' ,e.last_name) AS Manager FROM employeeT INNER JOIN  role on role.id = employeeT.role_id INNER JOIN department on department.id = role.department_id left join employeeT e on employeeT.manager_id = e.id;";
+  connection.query(query, (err, res) =>{
+    if (err) throw err;
+    console.log('___________________________________________________________________________________________')
+    console.table(res);
+    console.log('___________________________________________________________________________________________')
+    startPrompt();
+  })
+}
 

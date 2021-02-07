@@ -184,4 +184,70 @@ var selectManager = () =>{
     }
   })
   return managersArr;
+}//case 5. Update employee
+const updateEmployeeRole = () => {
+  var query1 = (
+      "SELECT e.first_name, e.last_name, e.id," +
+      "CONCAT(e.first_name, ' ', e.last_name) AS full_Name " +
+      "FROM employeeT AS e"
+  );
+  connection.query(query1, (err, resN) => {
+      if (err) throw err;
+      // collect all the response full name into an array to be used by as achoice list for the prompt
+      var employeeNaneArr = [];
+      for (var i = 0; i < resN.length; i++) {
+          employeeNaneArr.push(resN[i].full_Name);
+      }
+console.log(employeeNaneArr)
+      inquirer.prompt(
+          [
+            {
+              name: "employeeName",
+              type: "list",
+              message: "Name of employee to update?",
+              choices: employeeNaneArr
+              // choices: ['ab', 'cd', 'afe']
+          }
+        ]).then(resName => {
+          // if a name to update is selected then; 
+          // collect role titles from the query to be used as an araray choices for role prompt
+          connection.query("SELECT r.title, r.id FROM role AS r", (err, resR) => {
+              if (err) throw err;
+              var roleTitlesArr = [];
+              for (var i = 0; i < resR.length; i++) {
+                  roleTitlesArr.push(resR[i].title);
+              }
+              inquirer.prompt(
+                  [{
+                      name: "titleRole",
+                      type: "list",
+                      message: "Select the new role!",
+                      choices: roleTitlesArr
+                  }]
+              ).then(resRole => {
+                  //for each response  asign the preupdated employee id to that particular person updated.
+                  resN.forEach(person => {
+                      if (resName.employeeName === person.full_Name) {
+                          employeeID = person.id;
+                      }
+                  });
+                  var roleID = 0;
+                  resR.forEach(position => {
+                      if (position.title === resRole.titleRole) {
+                          roleID = position.id;
+                      }
+                  })
+                  connection.query("UPDATE employeeT SET role_id=(?) WHERE id=(?)", [roleID, employeeID], (err3, res3) => {
+                      if (err3) throw err3;
+                      console.log(`${resName.employeeName}'s role is updated to ${resRole.titleRole}.`);
+                      startPrompt();
+                  })
+              })
+          })
+
+      })
+
+  })
 }
+
+

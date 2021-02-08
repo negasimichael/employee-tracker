@@ -106,7 +106,7 @@ var viewAllRoles = () => {
     startPrompt();
   })
 }
-//cas 3. View all Emplyees By Deparments
+//cas 3. View all Emplyees By Deparments.
 var viewAllDepartments = () => {
   var query = "SELECT employeeT.first_name, employeeT.last_name, department.name AS Department FROM employeeT JOIN role ON employeeT.role_id = role.id JOIN department ON role.department_id = department.id ORDER BY employeeT.id;";
   connection.query(query,

@@ -160,6 +160,7 @@ var addEmployee = () => {
       })
   })
 }
+
 //case 4. choieces 1
 var roleArr = [];
 var selectRole = () => {
@@ -171,8 +172,6 @@ var selectRole = () => {
   })
   return roleArr;
 }
-
-
 
 //case 4. choice 2
 var managersArr = [];
@@ -193,6 +192,7 @@ const updateEmployeeRole = () => {
     "CONCAT(e.first_name, ' ', e.last_name) AS full_Name " +
     "FROM employeeT AS e"
   );
+
   connection.query(query1, (err, resN) => {
     if (err) throw err;
     // collect all the response full name into an array to be used by as achoice list for the prompt
@@ -208,7 +208,6 @@ const updateEmployeeRole = () => {
           type: "list",
           message: "Name of employee to update?",
           choices: employeeNaneArr
-          // choices: ['ab', 'cd', 'afe']
         }
       ]).then(resName => {
         // if a name to update is selected then; 
@@ -283,7 +282,6 @@ var addRole = () => {
   });
 }
 
-
 //case 7. adding department
 var addDepartment = () => {
   inquirer.prompt([
@@ -305,7 +303,6 @@ var addDepartment = () => {
     )
   })
 }
-
 
 //case 8. deleting employee.
 var fireEmployee = () => {

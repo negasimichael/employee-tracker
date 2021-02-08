@@ -126,7 +126,7 @@ var addEmployee = () => {
       message: "What is the employee's first name"
     },
     {
-      name: "last_name",
+      name: "lastname",
       type: "input",
       message: " What is the employee's last name?"
     },
@@ -332,7 +332,6 @@ var fireEmployee = () => {
   })
 
 }
-
 
 //case 9. employee budget
 var employeeBuget = () => {

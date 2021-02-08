@@ -19,7 +19,7 @@ Employee-Tracker is a CLI application for bulding and maintaining employee data 
 The developer is authorizing a free installation by cloning from the code [negasimichael](https://github.com/negasimichael/employee-tracker).
    
    ## Usage Instructions
-  i.Open the link to watch the video
+  i. You  can click the link  video demonstrating the entirety of the app's functionality https://drive.google.com/file/d/1hJoCylWKGMt7q16igduLvxucWi2t4pvv/view?usp=sharing
 
   ii.Make sure node and npm is installed in your computer.
 
@@ -27,9 +27,9 @@ iii.Once in the directory run npm install to install the node_modules needed to 
 
 iv.Then Run node app.js to perform task based on the inquirer prompt.
 
-![employee-tracker](png)
-
-![employee-tracker](png)
+![employee-tracker](Assets/Images/E1.png)
+![employee-tracker](Assets/Images/E2.png)
+![employee-tracker](Assets/Images/E3.png)
 
 
 ## Contribution

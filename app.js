@@ -307,7 +307,7 @@ var addDepartment = () => {
 }
 
 
-//case 8. deleting employee
+//case 8. deleting employee.
 var fireEmployee = () => {
   connection.query("SELECT * FROM employeeT", (err, resId) => {
     var array = [];

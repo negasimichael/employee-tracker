@@ -95,7 +95,7 @@ var viewAllEmployees = () => {
   })
 }
 
-//case 2. View All Employee's By Roles?
+//case 2. View All Employee's By Roles.
 var viewAllRoles = () => {
   var query = "SELECT employeeT.first_name, employeeT.last_name, role.title AS Title FROM employeeT JOIN role ON employeeT.role_id = role.id;";
   connection.query(query, (err, res) => {
@@ -117,7 +117,7 @@ var viewAllDepartments = () => {
     })
 }
 
-//case 4. Add Employee?
+//case 4. Add Employee.
 var addEmployee = () => {
   inquirer.prompt([
     {
@@ -185,7 +185,7 @@ var selectManager = () => {
   return managersArr;
 }
 
-//case 5. Update employee
+//case 5. Update employee.
 const updateEmployeeRole = () => {
   var query1 = (
     "SELECT e.first_name, e.last_name, e.id," +
@@ -195,7 +195,7 @@ const updateEmployeeRole = () => {
 
   connection.query(query1, (err, resN) => {
     if (err) throw err;
-    // collect all the response full name into an array to be used by as achoice list for the prompt
+    // collect all the response full name into an array to be used by a choice list for the prompt
     var employeeNaneArr = [];
     for (var i = 0; i < resN.length; i++) {
       employeeNaneArr.push(resN[i].full_Name);
@@ -251,7 +251,7 @@ const updateEmployeeRole = () => {
   })
 }
 
-//case 6. add role
+//case 6. add role.
 var addRole = () => {
   connection.query("SELECT role.title AS Title, role.salary AS Salary FROM role", (err, res) => {
     inquirer.prompt([
@@ -282,7 +282,7 @@ var addRole = () => {
   });
 }
 
-//case 7. adding department
+//case 7. adding department.
 var addDepartment = () => {
   inquirer.prompt([
     {
@@ -330,7 +330,7 @@ var fireEmployee = () => {
 
 }
 
-//case 9. employee budget
+//case 9. employee budget.
 var employeeBuget = () => {
   inquirer.prompt(
     {
@@ -347,7 +347,7 @@ var employeeBuget = () => {
     connection.query(query, (err, res) => {
       if (err) throw err;
       console.table(res);
-      //get another connection
+      //get another connection.
       var salaryArr = [];
       for (let index = 0; index < res.length; index++) {
         const element = res[index].salary;
@@ -365,7 +365,7 @@ var employeeBuget = () => {
   })
 }
 
-// exit the Traker
+// exit the Traker.
 function exitTracker() {
   connection.end();
 }

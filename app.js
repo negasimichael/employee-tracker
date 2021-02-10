@@ -200,7 +200,7 @@ const updateEmployeeRole = () => {
     for (var i = 0; i < resN.length; i++) {
       employeeNaneArr.push(resN[i].full_Name);
     }
-    // console.log(employeeNaneArr)
+  
     inquirer.prompt(
       [
         {
@@ -251,7 +251,7 @@ const updateEmployeeRole = () => {
   })
 }
 
-//case 6. add role.
+//case 6. add roles.
 var addRole = () => {
   connection.query("SELECT role.title AS Title, role.salary AS Salary FROM role", (err, res) => {
     inquirer.prompt([
@@ -282,7 +282,7 @@ var addRole = () => {
   });
 }
 
-//case 7. adding department.
+//case 7. adding departments.
 var addDepartment = () => {
   inquirer.prompt([
     {
@@ -312,7 +312,7 @@ var fireEmployee = () => {
       const element = resId[index].first_name;
       array.push(element)
     }
-    //console.log(array)
+
     inquirer.prompt(
       {
         name: "employeeName",
@@ -330,7 +330,7 @@ var fireEmployee = () => {
 
 }
 
-//case 9. employee budget.
+//case 9. employee budgets.
 var employeeBuget = () => {
   inquirer.prompt(
     {
@@ -342,7 +342,7 @@ var employeeBuget = () => {
     if (!yes.budget) return startPrompt();
     ;
     console.log('\nCompany Employee and theier salary')
-    console.log('----------------------------------')
+    console.log('___________________________________________________')
     var query = "SELECT employeeT.id, employeeT.first_name, employeeT.last_name, role.salary FROM employeeT INNER JOIN  role on role.id = employeeT.role_id left join employeeT e on employeeT.manager_id = e.id;"
     connection.query(query, (err, res) => {
       if (err) throw err;
@@ -357,7 +357,7 @@ var employeeBuget = () => {
       for (var i = 0; i < salaryArr.length; i++) {
         totalBuget += parseInt(salaryArr[i]);
       }
-      console.log('-------------------------------')
+      console.log('_________________________________________________')
       console.log("Employees Total Budget = " + totalBuget)
       console.log('\n')
       startPrompt();
